@@ -3,7 +3,7 @@
 	"displayName": "flocss Helper",
 	"description": "Help code with flocss",
 	"version": "0.0.1",
-	"publisher": "flocssHelper",
+	"publisher": "islandryu",
 	"engines": {
 		"vscode": "^1.48.0"
 	},
@@ -11,6 +11,7 @@
 	"categories": [
 		"Other"
 	],
+	"author": {"name":"islandryu"},
 	"activationEvents": [
 		"onCommand:flocssHelper.createsass"
 	],
@@ -53,6 +54,10 @@
 	"dependencies": {},
 	"bugs": {
 		"url": "https://github.com/islandryu/flocsshelper/issues"
-  	},
+	  },
+	  "repository": {
+		  "type":"git",
+		  "url": "https://github.com/islandryu/flocsshelper"
+	  },
 	"homepage": "https://github.com/islandryu/flocsshelper"
 }
