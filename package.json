@@ -1,11 +1,13 @@
 {
 	"name": "flocss-helper",
-	"displayName": "flocss-helper",
-	"description": "",
+	"displayName": "flocss Helper",
+	"description": "Help code with flocss",
 	"version": "0.0.1",
+	"publisher": "flocssHelper",
 	"engines": {
 		"vscode": "^1.48.0"
 	},
+	"license": "MIT",
 	"categories": [
 		"Other"
 	],
@@ -43,11 +45,14 @@
 		"jest": "^26.4.2",
 		"jest-plugin-fs": "^2.9.0",
 		"mocha": "^8.0.1",
-		"prettier": "2.1.2",
+		"prettier": "^2.1.2",
 		"ts-jest": "^26.4.1",
-		"tslint-config-prettier": "^1.18.0",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.4.0"
 	},
-	"dependencies": {}
+	"dependencies": {},
+	"bugs": {
+		"url": "https://github.com/islandryu/flocsshelper/issues"
+  	},
+	"homepage": "https://github.com/islandryu/flocsshelper"
 }
