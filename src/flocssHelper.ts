@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import SassMaker from "./SassMaker";
 import HtmlDiagnostic, { bemclasses } from "./htmlDiagnostic";
-import prettier from "prettier";
 
 export function activate(context: vscode.ExtensionContext) {
   const sassMaker: SassMaker = new SassMaker();
@@ -17,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
       const text: string = sassMaker.createSassText(bemClasses);
       const uri: vscode.Uri = vscode.Uri.file(
         vscode.workspace.rootPath +
-          "/scss/object/component/" +
+          "/scss/Object/component/" +
           bemClasses.block[0] +
           ".scss"
       );
@@ -25,13 +24,11 @@ export function activate(context: vscode.ExtensionContext) {
     }
     bemClassesArr = htmlDiagnostic.getProjectClasses();
     for (const bemClasses of bemClassesArr) {
-      const text: string =
-        sassMaker.createSassText(bemClasses)
-      ;
-      console.log(text)
+      const text: string = sassMaker.createSassText(bemClasses);
+      console.log(text);
       const uri: vscode.Uri = vscode.Uri.file(
         vscode.workspace.rootPath +
-          "/scss/object/project/" +
+          "/scss/Object/project/" +
           bemClasses.block[0] +
           ".scss"
       );
@@ -53,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
       const text: string = sassMaker.createSassText(bemClasses);
       const uri: vscode.Uri = vscode.Uri.file(
         vscode.workspace.rootPath +
-          "/scss/Utility/" +
+          "/scss/Object/Utility/" +
           bemClasses.block[0] +
           ".scss"
       );
