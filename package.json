@@ -20,6 +20,16 @@
   "main": "./dist/flocssHelper.js",
   "icon": "flocss.png",
   "contributes": {
+    "configuration":{
+      "title":"FlocssHelper",
+      "properties": {
+        "flocssHelper.outputPoint":{
+          "type":"string",
+          "default":"/sass",
+          "description": "Specify the location to output the file"
+        }
+      }
+    },
     "commands": [
       {
         "command": "flocssHelper.createsass",

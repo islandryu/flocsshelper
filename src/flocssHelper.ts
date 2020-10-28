@@ -1,8 +1,10 @@
 import * as vscode from "vscode";
 import SassMaker from "./SassMaker";
 import HtmlDiagnostic, { bemclasses } from "./htmlDiagnostic";
+import {getConfigValue} from "./vscodeHelper";
 
 export function activate(context: vscode.ExtensionContext) {
+  const outputPoint = getConfigValue("flocssHelper.outputPoint","/sass");
   const sassMaker: SassMaker = new SassMaker();
   const htmlDiagnostic: HtmlDiagnostic = new HtmlDiagnostic();
   vscode.commands.registerCommand("flocssHelper.createsass", () => {
@@ -14,18 +16,18 @@ export function activate(context: vscode.ExtensionContext) {
     createsassfiles(
       htmlDiagnostic.getComponentClasses(),
       sassMaker,
-      "Object/Component/"
+      outputPoint+"/Object/Component/"
     );
     createsassfiles(
       htmlDiagnostic.getProjectClasses(),
       sassMaker,
-      "Object/Project/"
+      outputPoint+"/Object/Project/"
     );
-    createsassfiles(htmlDiagnostic.getLayoutClasses(), sassMaker, "Layout/");
+    createsassfiles(htmlDiagnostic.getLayoutClasses(), sassMaker, outputPoint+"/Layout/");
     createsassfiles(
       htmlDiagnostic.getUtilityClasses(),
       sassMaker,
-      "Object/Utility/"
+      outputPoint+"/Object/Utility/"
     );
   });
 }
@@ -39,7 +41,6 @@ function createsassfiles(
     const text: string = sassMaker.createSassText(bemClasses);
     const uri: vscode.Uri = vscode.Uri.file(
       vscode.workspace.rootPath +
-        "/scss/" +
         path +
         "_" +
         bemClasses.block[0] +
