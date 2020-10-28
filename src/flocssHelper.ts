@@ -41,6 +41,7 @@ function createsassfiles(
       vscode.workspace.rootPath +
         "/scss/" +
         path +
+        "_" +
         bemClasses.block[0] +
         ".scss"
     );

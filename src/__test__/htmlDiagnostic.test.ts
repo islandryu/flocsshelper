@@ -34,14 +34,14 @@ describe("getClasses", () => {
     ];
     expect(htmlDiagnostic.classes).toEqual(expected);
   });
-  it("removes duplicates",()=>{
+  it("removes duplicates", () => {
     const htmlDiagnostic = new HtmlDiagnostic();
-    htmlDiagnostic.setHtml(`<div class="l-header__test"></div><div class="l-header__test"></div>`);
-    const expected = [
-      "l-header__test"
-    ]
+    htmlDiagnostic.setHtml(
+      `<div class="l-header__test"></div><div class="l-header__test"></div>`
+    );
+    const expected = ["l-header__test"];
     expect(htmlDiagnostic.classes).toEqual(expected);
-  })
+  });
 });
 describe("classifyByBem", () => {
   it("classify classes into block,element and modifier", () => {
