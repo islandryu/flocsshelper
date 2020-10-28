@@ -11,50 +11,46 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.activeTextEditor.document;
     if (activeDocument.languageId != "html") return;
     htmlDiagnostic.setHtml(activeDocument.getText());
-    let bemClassesArr: bemclasses[] = htmlDiagnostic.getComponentClasses();
-    for (const bemClasses of bemClassesArr) {
-      const text: string = sassMaker.createSassText(bemClasses);
-      const uri: vscode.Uri = vscode.Uri.file(
-        vscode.workspace.rootPath +
-          "/scss/Object/component/" +
-          bemClasses.block[0] +
-          ".scss"
-      );
-      vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(text));
-    }
-    bemClassesArr = htmlDiagnostic.getProjectClasses();
-    for (const bemClasses of bemClassesArr) {
-      const text: string = sassMaker.createSassText(bemClasses);
-      console.log(text);
-      const uri: vscode.Uri = vscode.Uri.file(
-        vscode.workspace.rootPath +
-          "/scss/Object/project/" +
-          bemClasses.block[0] +
-          ".scss"
-      );
-      vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(text));
-    }
-    bemClassesArr = htmlDiagnostic.getLayoutClasses();
-    for (const bemClasses of bemClassesArr) {
-      const text: string = sassMaker.createSassText(bemClasses);
-      const uri: vscode.Uri = vscode.Uri.file(
-        vscode.workspace.rootPath +
-          "/scss/Layout/" +
-          bemClasses.block[0] +
-          ".scss"
-      );
-      vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(text));
-    }
-    bemClassesArr = htmlDiagnostic.getUtilityClasses();
-    for (const bemClasses of bemClassesArr) {
-      const text: string = sassMaker.createSassText(bemClasses);
-      const uri: vscode.Uri = vscode.Uri.file(
-        vscode.workspace.rootPath +
-          "/scss/Object/Utility/" +
-          bemClasses.block[0] +
-          ".scss"
-      );
-      vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(text));
-    }
+    createsassfiles(
+      htmlDiagnostic.getComponentClasses(),
+      sassMaker,
+      "Object/Component/"
+    );
+    createsassfiles(
+      htmlDiagnostic.getProjectClasses(),
+      sassMaker,
+      "Object/Project/"
+    );
+    createsassfiles(htmlDiagnostic.getLayoutClasses(), sassMaker, "Layout/");
+    createsassfiles(
+      htmlDiagnostic.getUtilityClasses(),
+      sassMaker,
+      "Object/Utility/"
+    );
   });
+}
+
+function createsassfiles(
+  bemClassesArr: bemclasses[],
+  sassMaker: SassMaker,
+  path: string
+) {
+  for (const bemClasses of bemClassesArr) {
+    const text: string = sassMaker.createSassText(bemClasses);
+    const uri: vscode.Uri = vscode.Uri.file(
+      vscode.workspace.rootPath +
+        "/scss/" +
+        path +
+        bemClasses.block[0] +
+        ".scss"
+    );
+    vscode.workspace.fs.readFile(uri).then(
+      (text: Uint8Array) => {
+        console.log("flie exists");
+      },
+      () => {
+        vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(text));
+      }
+    );
+  }
 }

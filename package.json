@@ -18,6 +18,7 @@
     "onCommand:flocssHelper.createsass"
   ],
   "main": "./dist/flocssHelper.js",
+  "icon": "flocss.png",
   "contributes": {
     "commands": [
       {
@@ -48,12 +49,13 @@
     "jest": "^26.4.2",
     "jest-plugin-fs": "^2.9.0",
     "mocha": "^8.0.1",
-    "prettier": "^2.1.2",
     "ts-jest": "^26.4.1",
     "typescript": "^3.8.3",
     "vscode-test": "^1.4.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "prettier": "^2.1.2"
+  },
   "bugs": {
     "url": "https://github.com/islandryu/flocsshelper/issues"
   },

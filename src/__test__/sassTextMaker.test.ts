@@ -10,7 +10,8 @@ describe("createSassText", () => {
       element: ["c-card__content", "c-card__title"],
       modifier: ["c-card--red"],
     };
-    const expected = ".c-card {\n  &__content {\n  }\n  &__title {\n  }\n  &--red {\n  }\n}\n";
+    const expected =
+      ".c-card {\n  &__content {\n  }\n  &__title {\n  }\n  &--red {\n  }\n}\n";
     expect(sassMakaer.createSassText(classes)).toEqual(expected);
   });
 });

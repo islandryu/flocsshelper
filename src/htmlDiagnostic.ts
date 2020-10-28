@@ -26,8 +26,6 @@ export default class HtmlDiagnostic {
     this.html = html;
     this.classes = this.getClasses();
   }
-  getClasses(): string[];
-  getClasses(regExp: RegExp): string[];
   getClasses(): string[] {
     const elements: string[] | null = this.html.match(/<.+?class=".+?".*?>/g);
     const classes: string[] = [];
@@ -44,7 +42,10 @@ export default class HtmlDiagnostic {
         classes.push(seperatedClass);
       }
     }
-    return classes;
+    const ret: string[] = classes.filter(function (x, i, self) {
+      return self.indexOf(x) === i;
+    });
+    return ret;
   }
   classifyByBem(classes: string[]): bemclasses {
     const block: string[] = [];
